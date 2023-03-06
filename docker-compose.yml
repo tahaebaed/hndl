@@ -7,4 +7,4 @@ services:
     container_name: hndlfm-frontend
     restart: on-failure
     ports:
-      - 5000:80
+      - 3000:80
