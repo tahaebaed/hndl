@@ -1,0 +1,100 @@
+.service__program-cards__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.service__program-cards__wrapper > * {
+  flex: 1 1 30%;
+  min-width: 30ch;
+  border: 1px solid #80808066;
+  height: 225px;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0px 0px 7px 0px;
+  margin: 0;
+  max-width: 32%;
+}
+
+.service__program-card__info {
+  margin: 0;
+  padding: 0;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: rgb(99, 99, 243);
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (orientation: portrait) {
+  .service__program-cards__wrapper {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.drop .dropleft .dropdown-toggle:before,
+.dropright .dropdown-toggle:before,
+.dropup .dropdown-toggle:after,
+.dropdown-toggle:after {
+  content: '' !important;
+}
+
+.service__program-card__toggle {
+  border: none;
+  color: rgb(101, 101, 249);
+  background-color: transparent;
+  font-size: 1.5rem;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+  border: none;
+  color: rgb(101, 101, 249);
+  background-color: transparent;
+  box-shadow: 0 0 0 0.2rem rgb(73 109 235 / 50%);
+}
+.service__program-card__toggle:hover,
+.service__program-card__toggle:active {
+  border: none;
+  color: rgb(101, 101, 249);
+  background-color: transparent;
+}
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  border: none;
+  color: rgb(101, 101, 249);
+  background-color: transparent;
+}
+
+.info-wrapper {
+  border: 1px solid rgba(165, 162, 162, 0.637);
+  border-radius: 10px;
+  padding: 1rem 0.5rem;
+  margin-bottom: 1rem;
+}
+.info-wrapper > .info-wrapper_inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.info-wrapper > .info-wrapper_inputs > label {
+  flex: 1 1 20%;
+  min-width: 30ch;
+  position: relative;
+}
+.info-wrapper > .info-wrapper_inputs > label > span {
+  position: absolute;
+  right: 2rem;
+  bottom: 15%;
+}
+.info-wrapper > legend {
+  width: auto;
+}

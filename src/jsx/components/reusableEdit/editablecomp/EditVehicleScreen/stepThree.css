@@ -1,0 +1,43 @@
+.info-wrapper {
+  border: 1px solid rgba(165, 162, 162, 0.637);
+  border-radius: 10px;
+  padding: 1rem 0.5rem;
+  margin-bottom: 1rem;
+}
+.info-wrapper > .info-wrapper_inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.info-wrapper > .info-wrapper_inputs > label {
+  flex: 1 1 20%;
+  min-width: 20ch;
+  position: relative;
+}
+.info-wrapper > .info-wrapper_inputs > label > span {
+  position: absolute;
+  right: 2rem;
+  bottom: 15%;
+}
+.info-wrapper > legend {
+  width: auto;
+}
+/* 
+.steps_container input,
+select option {
+  color: #3d4465;
+}
+
+.steps_container input:focus,
+select {
+  color: black !important;
+}
+.form-control {
+  border: 1px solid #a9a9a9;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+} */

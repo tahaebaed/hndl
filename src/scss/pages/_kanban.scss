@@ -1,0 +1,82 @@
+.kanban-bx {
+  display: -webkit-box;
+  width: 100%;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  .col {
+    width: 360px;
+    flex-grow: unset;
+    flex-basis: unset;
+    .card {
+      height: auto;
+      span.line {
+        position: absolute;
+        height: 4px;
+        width: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 1rem;
+      }
+    }
+  }
+  &::-webkit-scrollbar {
+    background-color: #ececec;
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #7e7e7e;
+    border-radius: 10px;
+  }
+  @include respond('phone-land') {
+    display: block;
+    width: auto;
+    .col {
+      width: 100%;
+      flex-basis: 0;
+      flex-grow: 1;
+    }
+  }
+}
+.title-num {
+  font-size: 32px;
+  @include respond('phone') {
+    font-size: 20px;
+  }
+}
+
+.kanban-bx {
+  .react-kanban-column {
+    width: 360px;
+    min-width: 360px;
+    -webkit-flex-grow: unset;
+    flex-grow: unset;
+    -webkit-flex-basis: unset;
+    flex-basis: unset;
+    padding-right: 15px;
+    padding-left: 15px;
+    .react-kanban-column-header {
+      position: relative;
+      margin-bottom: 10px;
+      .line {
+        position: absolute;
+        height: 4px;
+        width: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 1rem;
+      }
+      .card-header {
+        z-index: -1;
+        background: #fff;
+      }
+    }
+  }
+  .react-kanban-card {
+    .react-kanban-card__title {
+      .card {
+        border-radius: 0;
+      }
+    }
+  }
+}

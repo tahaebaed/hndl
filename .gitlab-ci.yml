@@ -1,0 +1,14 @@
+before_script:
+  - chmod 400 $SSH_KEY
+
+stages:
+  - deploy
+
+production-deploy:
+  stage: deploy
+  script:
+    - ssh -o StrictHostKeyChecking=no -i $SSH_KEY root@35.204.39.249 "
+      cd frontend && git checkout master && git pull origin master &&
+      docker system prune -a && docker-compose down && docker-compose up --build -d"
+  only:
+    - master

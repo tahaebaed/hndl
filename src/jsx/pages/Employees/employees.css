@@ -1,0 +1,32 @@
+.employees_form,
+.radio_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.employee_form_inp {
+  min-width: 20ch;
+  flex: 1 1 48.5%;
+}
+
+.fin-formate {
+  min-width: 20ch;
+  flex: 2 1;
+}
+
+.radio_wrapper {
+  gap: 0;
+  align-items: center;
+  margin-top: 1.1rem;
+}
+
+.radio_wrapper > label {
+  min-width: 9ch;
+  flex: 1 1 25%;
+  margin: 0;
+}
+
+.bin {
+  font-size: 30px;
+}
