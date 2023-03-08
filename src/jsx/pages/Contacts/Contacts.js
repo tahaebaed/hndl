@@ -121,7 +121,19 @@ const Contacts = () => {
       },
     });
   };
-
+  const [createContact] = useMutation(CREATE_CONTACT, {
+    refetchQueries: [
+      {
+        query: GET_CONTACT,
+        variables: {
+          options: {
+            showAll: true,
+          },
+        },
+      },
+    ],
+  });
+  
   useEffect(() => {
     if (!Cookies.get('token')) {
       history.push('/page-login');
@@ -133,23 +145,14 @@ const Contacts = () => {
   if (error) {
     return <p>error {error.message}</p>;
   }
+  
+
+
   const handleContact = (values) => {
     toastId.current = toast('Creating...', {
       autoClose: false,
     });
 
-    const [createContact] = useMutation(CREATE_CONTACT, {
-      refetchQueries: [
-        {
-          query: GET_CONTACT,
-          variables: {
-            options: {
-              showAll: true,
-            },
-          },
-        },
-      ],
-    });
 
     createContact({
       variables: values,

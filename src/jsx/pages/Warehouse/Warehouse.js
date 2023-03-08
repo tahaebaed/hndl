@@ -484,7 +484,7 @@ const Warehouse = () => {
                 fileName={intl.messages.warehouses}
                 instructions={instructions}
                 convert={convertExcelDataToNeededArray}
-                handelSubmitMultiple={handelSubmitMultiple}
+                // handelSubmitMultiple={handelSubmitMultiple}
                 sheetName={intl.messages.warehouses}
               />
             </AddButtons>

@@ -14,9 +14,9 @@ const Service = ({ id, modal, setModal, serviceList, setServiceList }) => {
       getServiceId: id,
     },
     onCompleted: (data) => {
-      setValue('service.assignTo', data.getService.assignTo._id);
-      setValue('service.vehicle', data.getService.vehicle._id);
-      setValue('service.status', data.getService.status);
+      setValue('service.assignTo', data?.getService?.assignTo?._id);
+      setValue('service.vehicle', data?.getService?.vehicle?._id);
+      setValue('service.status', data?.getService?.status);
       setValue(
         'service.endTimestamp',
         data?.getService.endTimestamp && data?.getService.endTimestamp.slice(0, 16),
