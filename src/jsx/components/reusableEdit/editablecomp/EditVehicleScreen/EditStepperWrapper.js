@@ -23,11 +23,11 @@ const EditStepperWrapper = ({
   setOpenModal,
   refetchQuery,
   setModal,
+  compData,
   setlocalVehicleList,
-  compData
 }) => {
   const [activeStep, setActiveStep] = useState(0);
-const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
   const toastId = useRef(null);
   const {
     register,

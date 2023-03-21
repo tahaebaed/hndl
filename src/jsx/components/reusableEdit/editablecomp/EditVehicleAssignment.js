@@ -119,7 +119,7 @@ const EditVehicleAssignment = ({ id, setModal, refetchQuery }) => {
     <ModalFormControl
       handleSubmit={handleSubmit(updateVehicleAssignment)}
       watch={watch}
-      xsxsxs={{ deleteVehicleAssignmentId: id }}
+      xsxsxs={{ 'deleteVehicleAssignmentId': id }}
       deleteRow={deleteVehicleAssignmentRow}
       id={id}
       compName='Vehicle Assignment'
@@ -127,63 +127,64 @@ const EditVehicleAssignment = ({ id, setModal, refetchQuery }) => {
       edit={true}
       slog={vehicleAssignment?.getVehicleAssignment?.vehicle?.details?.name}
       isDirty={isDirty}
-      inputs={[
-        {
-          type: 'select',
-          labelTitle: 'Vehicle',
-          required: true,
-          register: register('vehicleAssignment.vehicle', {
-            required: {
-              value: true,
-              message: 'vehicle Trailer is required',
-            },
-          }),
-          defaultOption: 'Please Select Vehicle',
-          options:
-            vehicleSelect &&
-            vehicleSelect.getVehicles?.data.filter((type) => type.details.type !== 'Trailer'),
-          error: errors?.vehicleAssignment?.vehicle?.message,
-        },
-        {
-          type: 'select',
-          labelTitle: 'Operator',
-          required: true,
-          defaultOption: 'Please Select Operator',
-          register: register('vehicleAssignment.operator', {
-            required: {
-              value: true,
-              message: 'vehicle Trailer is required',
-            },
-          }),
-          options: operatorsSelect?.getEmployees?.data.filter(
-            (trailer) => trailer.classification === 'Operator',
-          ),
-          error: errors?.vehicleAssignment?.operator?.message,
-        },
-        {
-          type: 'select',
-          defaultOption: 'select trailer',
-          labelTitle: 'Trailer',
-          register: register('vehicleAssignment.trailer'),
-          options:
-            vehicleSelect &&
-            vehicleSelect.getVehicles?.data.filter((type) => type.details.type === 'Trailer'),
-        },
-        {
-          type: 'datetime-local',
-          labelTitle: 'Start Date',
-          register: register('vehicleAssignment.startTimestamp', {
-            valueAsDate: true,
-          }),
-        },
-        {
-          type: 'datetime-local',
-          labelTitle: 'End Date',
-          register: register('vehicleAssignment.expireAt', {
-            valueAsDate: true,
-          }),
-        },
-      ]}
+      inputs={
+        [
+          {
+            type: 'select',
+            labelTitle: 'Vehicle',
+            required: true,
+            register: register('vehicleAssignment.vehicle', {
+              required: {
+                value: true,
+                message: 'vehicle Trailer is required',
+              },
+            }),
+            defaultOption: 'Please Select Vehicle',
+            options:
+              vehicleSelect &&
+              vehicleSelect.getVehicles?.data.filter((type) => type.details.type !== 'Trailer'),
+            error: errors?.vehicleAssignment?.vehicle?.message,
+          },
+          {
+            type: 'select',
+            labelTitle: 'Operator',
+            required: true,
+            defaultOption: 'Please Select Operator',
+            register: register('vehicleAssignment.operator', {
+              required: {
+                value: true,
+                message: 'vehicle Trailer is required',
+              },
+            }),
+            options: operatorsSelect?.getEmployees?.data.filter(
+              (trailer) => trailer.classification === 'Operator',
+            ),
+            error: errors?.vehicleAssignment?.operator?.message,
+          },
+          {
+            type: 'select',
+            defaultOption: 'select trailer',
+            labelTitle: 'Trailer',
+            register: register('vehicleAssignment.trailer'),
+            options:
+              vehicleSelect &&
+              vehicleSelect.getVehicles?.data.filter((type) => type.details.type === 'Trailer'),
+          },
+          {
+            type: 'datetime-local',
+            labelTitle: 'Start Date',
+            register: register('vehicleAssignment.startTimestamp', {
+              valueAsDate: true,
+            }),
+          },
+          {
+            type: 'datetime-local',
+            labelTitle: 'End Date',
+            register: register('vehicleAssignment.expireAt', {
+              valueAsDate: true,
+            }),
+          },
+        ]}
     />
   );
 };

@@ -55,6 +55,7 @@ const StepOne = ({
     setValue('vehicle.details.photoUrl', file);
     reader.onload = () => {
       sessionStorage.setItem('imgVehicle', reader.result);
+      setSelectedImg(reader.result);
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);
@@ -300,7 +301,10 @@ const StepOne = ({
           <label className='mx-2' htmlFor='out'>
             <h6>{intl.messages.image}</h6>
           </label>
-          <input type='file' onChange={handleImg} accept='image/*' id='vehicleImage' />
+          <label className='d-flex align-items-end'>
+            <img src={selectedImg || watch('vehicle.details.photoUrl')} className='w-25 mr-3' />
+            <input type='file' onChange={handleImg} accept='image/*' id='vehicleImage' />
+          </label>
         </div>
         <div className=' col-12 col-md-6 d-flex justify-content-between mb-4'>
           <div>

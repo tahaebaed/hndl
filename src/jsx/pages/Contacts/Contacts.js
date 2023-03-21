@@ -106,6 +106,20 @@ const Contacts = () => {
     ],
   });
 
+
+  const [createContact] = useMutation(CREATE_CONTACT, {
+    refetchQueries: [
+      {
+        query: GET_CONTACT,
+        variables: {
+          options: {
+            showAll: true,
+          },
+        },
+      },
+    ],
+  });
+
   const convertExcelDataToNeededArray = (Arr) => {
     const CONVERTED = Arr.map((col) => ({
       name: col['Name'],
@@ -121,19 +135,7 @@ const Contacts = () => {
       },
     });
   };
-  const [createContact] = useMutation(CREATE_CONTACT, {
-    refetchQueries: [
-      {
-        query: GET_CONTACT,
-        variables: {
-          options: {
-            showAll: true,
-          },
-        },
-      },
-    ],
-  });
-  
+
   useEffect(() => {
     if (!Cookies.get('token')) {
       history.push('/page-login');
@@ -145,14 +147,12 @@ const Contacts = () => {
   if (error) {
     return <p>error {error.message}</p>;
   }
-  
 
 
   const handleContact = (values) => {
     toastId.current = toast('Creating...', {
       autoClose: false,
     });
-
 
     createContact({
       variables: values,

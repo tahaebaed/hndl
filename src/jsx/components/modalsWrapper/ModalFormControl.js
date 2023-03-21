@@ -69,11 +69,12 @@ const ModalFormControl = ({
               className='btn btn-danger px-5'
               type='button'
               onClick={() => {
+                console.log(id);
                 toastId.current = toast('updating ...', {
                   autoClose: false,
                 });
                 deleteRow({
-                  variables: xsxsxs,
+                  variables: xsxsxs && xsxsxs,
                   onCompleted: (data) => {
                     toast.update(toastId.current, {
                       render: `${slog} has been deleted`,
@@ -83,10 +84,10 @@ const ModalFormControl = ({
 
                     setModal(false);
                   },
-                  onError: (_) => {
+                  onError: (error) => {
                     toast.update(toastId.current, {
-                      render: `Something went wrong`,
-                      type: toast.TYPE.WARNING,
+                      render: `Something went wrong ${error}`,
+                      type: toast.TYPE.ERROR,
                       autoClose: 3000,
                     });
                   },

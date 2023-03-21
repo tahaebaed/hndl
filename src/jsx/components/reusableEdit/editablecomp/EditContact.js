@@ -140,7 +140,7 @@ const EditContact = ({ id, setModal, compData, refetchQuery }) => {
     <ModalFormControl
       handleSubmit={handleSubmit(handleContact)}
       watch={watch}
-      xsxsxs='deleteContactId'
+      xsxsxs={{ deleteContactId: id }}
       deleteRow={deleteContactRow}
       id={id}
       compName='Contact'

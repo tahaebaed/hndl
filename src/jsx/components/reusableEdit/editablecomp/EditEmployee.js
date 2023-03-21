@@ -418,10 +418,10 @@ const EditEmployee = ({ id, setModal, compData, refetchQuery }) => {
 
                 setModal(false);
               },
-              onError: (_) => {
+              onError: (error) => {
                 toast.update(toastId.current, {
-                  render: `Something went wrong`,
-                  type: toast.TYPE.WARNING,
+                  render: `Something went wrong ${error}`,
+                  type: toast.TYPE.ERROR,
                   autoClose: 3000,
                 });
               },
