@@ -17,7 +17,7 @@ import {
 } from '../../../../../utilities/Apollo/Querries';
 import { DELETE_VEHICLE } from '../../../../../utilities/Apollo/Delete';
 
-const StepperWrapper = ({ id, vehicleList, setOpenModal, refetchQuery, setlocalVehicleList }) => {
+const StepperWrapper = ({ id, vehicleList, setOpenModal, refetchQuery, setlocalVehicleList,setModal,compData }) => {
   const [activeStep, setActiveStep] = useState(0);
   const toastId = useRef(null);
   const {

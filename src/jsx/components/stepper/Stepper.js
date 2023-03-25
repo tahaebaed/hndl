@@ -9,7 +9,7 @@ import Step from '@mui/material/Step'
 import { StepButton } from '@mui/material'
 import { useMutation, useQuery } from '@apollo/client'
 import { CREATE_VEHICLE } from '../../../utilities/Apollo/Mutate'
-import { GET_GROUPS } from '../../../utilities/Apollo/Querries'
+import { GET_GROUPS, GET_SERVICE_PROGRAMS } from '../../../utilities/Apollo/Querries'
 import { toast } from 'react-toastify'
 
 const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehiclesList }) => {
@@ -131,6 +131,12 @@ const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehic
       options: { showAll: true },
     },
   })
+
+  const { data: serviceProgData } = useQuery(GET_SERVICE_PROGRAMS, {
+    variables: {
+      options: { showAll: true },
+    },
+  });
   const onHandleSubmit = values => {
     toastId.current = toast('Creating...', {
       autoClose: false,
@@ -217,7 +223,7 @@ const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehic
               activeStep,
               setActiveStep,
               register,
-              vehicleList,
+              serviceProgList: serviceProgData?.getServicePrograms?.data,
               watch,
               setValue,
               required: true,

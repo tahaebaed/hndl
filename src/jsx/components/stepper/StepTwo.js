@@ -4,7 +4,7 @@ const StepTwo = ({
   activeStep,
   setActiveStep,
   register,
-  vehicleList,
+  serviceProgList,
   watch,
   setValue,
 }) => {
@@ -62,16 +62,15 @@ const StepTwo = ({
             >
               {[
                 {
-                  _id: "",
-                  details: {
-                    name: "please select a vehicle",
-                    disabled: true,
-                  },
+                  _id: '',
+
+                  name: 'please select a service program',
+                  disabled: true,
                 },
-                ...vehicleList,
+                ...serviceProgList,
               ].map((v) => (
-                <option key={v._id} value={v._id} disabled={v.details.disabled}>
-                  {v.details.name}
+                <option key={v._id} value={v._id} disabled={v.disabled}>
+                  {v.name}
                 </option>
               ))}
             </select>
