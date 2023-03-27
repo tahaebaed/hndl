@@ -10,7 +10,7 @@ const StepFour = ({ activeStep, setActiveStep, register }) => {
             <select
               className='form-control'
               defaultValue={''}
-              {...register('vehicle.gps.device', { required: true })}
+              {...register('vehicle.gps.device')}
             >
               <option disabled value={''}>
                 GPS Devices
@@ -26,7 +26,7 @@ const StepFour = ({ activeStep, setActiveStep, register }) => {
               className="form-control"
               type="text"
               placeholder="Enter serial number"
-              {...register("vehicle.gps.serialNumber", { required: true })}
+              {...register("vehicle.gps.serialNumber")}
             />
           </label>
         </div>
@@ -38,7 +38,6 @@ const StepFour = ({ activeStep, setActiveStep, register }) => {
               type='number'
               value={0}
               {...register('vehicle.gps.timeInterval', {
-                required: true,
                 valueAsNumber: true,
               })}
             />

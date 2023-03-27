@@ -8,6 +8,7 @@ import vehiclePlaceHolder from '../../../../images/v-placeholder.png';
 import { UPDATE_ISSUE, UPDATE_VEHICLE } from '../../../../utilities/Apollo/Mutate';
 import { toast } from 'react-toastify';
 import { DELETE_ISSUE } from '../../../../utilities/Apollo/Delete';
+import FormControl from '../../../pages/Employees/employee_fromcontrol/FormControl';
 
 const EditIssue = ({ vehicles, employees, refetchQuery, id, setModal, modal }) => {
   const [imgPlaceHolder, setImgPlaceHolder] = useState(vehiclePlaceHolder);
@@ -36,7 +37,7 @@ const EditIssue = ({ vehicles, employees, refetchQuery, id, setModal, modal }) =
     },
   });
   const {
-    data: service,
+    data: issue,
     loading,
     error,
   } = useQuery(GET_SINGLE_ISSUE, {
@@ -52,6 +53,9 @@ const EditIssue = ({ vehicles, employees, refetchQuery, id, setModal, modal }) =
       setValue('issue.name', data.getIssue.name);
       setValue('issue.assignTo', data.getIssue.assignTo._id);
       setValue('issue.endTimestamp', data.getIssue.endTimestamp.slice(0, 16));
+      setValue('issue.comment', data.getIssue.comment);
+      setValue('issue.photoUrl', data.getIssue.photoUrl);
+      setValue('issue.documentUrl', data.getIssue.documentUrl);
     },
   });
   useEffect(() => {
@@ -122,6 +126,38 @@ const EditIssue = ({ vehicles, employees, refetchQuery, id, setModal, modal }) =
       },
     });
   };
+
+  const resolveIssue = (values) => {
+    toastId.current = toast('updating ...', {
+      autoClose: false,
+    });
+    updateIssueData({
+      variables: {
+        updateIssueId: id,
+        issue: {
+          ...values.issue,
+          status: 'Resolved',
+        },
+      },
+      onCompleted: (data) => {
+        toast.update(toastId.current, {
+          render: `Issue has been Resolved`,
+          type: toast.TYPE.SUCCESS,
+          autoClose: 3000,
+        });
+        setModal(false);
+        reset();
+      },
+      onError: (error) => {
+        toast.update(toastId.current, {
+          render: `Something went wrong ${error}`,
+          type: toast.TYPE.DEFAULT,
+          autoClose: 3000,
+        });
+      },
+    });
+  };
+
   return (
     <form className='employees_form' onSubmit={handleSubmit(updateIssue)}>
       <label className='w-100'>
@@ -217,6 +253,25 @@ const EditIssue = ({ vehicles, employees, refetchQuery, id, setModal, modal }) =
           </select>
         </label>
       </div>
+
+      <label className='w-100'>
+        <h6>Comment</h6>
+        <textarea
+          className='form-control'
+          placeholder='add comment'
+          {...register('issue.comment')}
+        />
+      </label>
+
+      <div className='row'>
+        <FormControl label='Image' type='image' setFile={'issue.photoUrl'} setValue={setValue} />
+        <FormControl
+          label='Document'
+          type='document'
+          setFile={'issue.documentUrl'}
+          setValue={setValue}
+        />
+      </div>
       <div className='col-12 d-flex justify-content-between'>
         <button
           className='btn btn-danger px-5'
@@ -246,6 +301,9 @@ const EditIssue = ({ vehicles, employees, refetchQuery, id, setModal, modal }) =
           }}
         >
           Delete Issue
+        </button>
+        <button disabled={issue?.getIssue?.status === 'Resolved'} onClick={resolveIssue} className='btn btn-primary px-5' type='button'>
+          Resolve
         </button>
         <button disabled={!isDirty} className='btn btn-primary px-5' type='submit'>
           Save Changes

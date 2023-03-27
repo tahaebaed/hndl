@@ -24,10 +24,10 @@ const EditVehicleAssignment = ({ id, setModal, refetchQuery }) => {
   } = useForm({
     updateVehicleAssignmentId: null,
     vehicleAssignment: {
-      operator: null,
+      operator: '',
       startTimestamp: new Date().toJSON().slice(0, 16),
-      trailer: null,
-      vehicle: null,
+      trailer: '',
+      vehicle: '',
       expireAt: new Date().toJSON().slice(0, 16),
     },
   });
@@ -133,6 +133,7 @@ const EditVehicleAssignment = ({ id, setModal, refetchQuery }) => {
             type: 'select',
             labelTitle: 'Vehicle',
             required: true,
+            watch: watch('vehicleAssignment.vehicle'),
             register: register('vehicleAssignment.vehicle', {
               required: {
                 value: true,
@@ -150,6 +151,7 @@ const EditVehicleAssignment = ({ id, setModal, refetchQuery }) => {
             labelTitle: 'Operator',
             required: true,
             defaultOption: 'Please Select Operator',
+            watch: watch('vehicleAssignment.operator'),
             register: register('vehicleAssignment.operator', {
               required: {
                 value: true,
@@ -165,6 +167,7 @@ const EditVehicleAssignment = ({ id, setModal, refetchQuery }) => {
             type: 'select',
             defaultOption: 'select trailer',
             labelTitle: 'Trailer',
+            watch: '',
             register: register('vehicleAssignment.trailer'),
             options:
               vehicleSelect &&

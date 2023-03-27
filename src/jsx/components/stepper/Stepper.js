@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import StepFour from './StepFour'
 import StepOne from './StepOne'
@@ -12,7 +12,7 @@ import { CREATE_VEHICLE } from '../../../utilities/Apollo/Mutate'
 import { GET_GROUPS, GET_SERVICE_PROGRAMS } from '../../../utilities/Apollo/Querries'
 import { toast } from 'react-toastify'
 
-const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehiclesList }) => {
+const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehiclesList: setLocalVehiclesList }) => {
   const [activeStep, setActiveStep] = useState(0)
   const toastId = useRef(null)
   const { register, handleSubmit, watch, setValue, control } = useForm({
@@ -104,7 +104,7 @@ const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehic
           year: '',
         },
         gps: {
-          device: '',
+          device: null,
           serialNumber: '',
           timeInterval: 0,
         },
@@ -124,8 +124,6 @@ const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehic
 
   const {
     data: groupData,
-    error: err,
-    loading: load,
   } = useQuery(GET_GROUPS, {
     variables: {
       options: { showAll: true },
@@ -153,6 +151,10 @@ const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehic
             ...values.vehicle.details,
             group: group._id || values.vehicle.details.group,
           },
+          gps: {
+            ...values.vehicle.gps,
+            device: values.vehicle.gps.device || undefined,
+          }
         },
       },
       onCompleted: (data) => {
@@ -162,12 +164,12 @@ const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehic
           type: toast.TYPE.SUCCESS,
           autoClose: 3000,
         })
-        setlocalVehiclesList(prev => [...prev, data.createVehicle])
+        setLocalVehiclesList(prev => [...prev, data.createVehicle])
         setOpenModal(false)
       },
       onError: error => {
         toast.update(toastId.current, {
-          render: `Something went wrong,${error}`,
+          render: `Something went wrong, ${error}`,
           type: toast.TYPE.WARNING,
           autoClose: 3000,
         })

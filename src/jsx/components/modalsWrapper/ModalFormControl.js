@@ -9,6 +9,7 @@ const ModalFormControl = ({
   id,
   setModal,
   slog,
+  watch,
   xsxsxs,
   compName,
   error,
@@ -27,7 +28,7 @@ const ModalFormControl = ({
                     {inp.labelTitle} {inp.required ? '*' : ''}
                   </h6>
                 </label>
-                <select className='form-control' defaultValue={''} {...inp.register}>
+                <select className='form-control' defaultValue={inp.watch} {...inp.register}>
                   <option disabled value={''}>
                     {inp.defaultOption}
                   </option>

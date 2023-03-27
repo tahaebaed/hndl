@@ -274,6 +274,7 @@ export const GET_VEHICLES_ASSIGNMENTS = gql`
     getVehicleAssignments {
       data {
         vehicle {
+          _id
           details {
             name
           }
@@ -426,6 +427,9 @@ export const GET_SINGLE_ISSUE = gql`
         }
       }
       status
+      photoUrl
+      documentUrl
+      comment
     }
   }
 `;

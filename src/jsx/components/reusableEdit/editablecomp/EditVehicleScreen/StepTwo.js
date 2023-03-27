@@ -46,7 +46,7 @@ const StepTwo = ({ activeStep, setActiveStep, register, setChecked, checked, ser
                 {
                   _id: '',
 
-                  name: 'please select a vehicle',
+                  name: 'please select a service program',
                   disabled: true,
                 },
                 ...serviceProgList,

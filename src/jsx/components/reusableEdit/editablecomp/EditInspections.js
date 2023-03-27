@@ -182,8 +182,8 @@ const EditInspections = ({
       />
       {/* {getValues('inspection.inspectionForm') && (
         <> */}
-      <h5>Vehicle Name: {singleInspec?.getInspection.vehicle.details.name}</h5>
-      <h6>Form Name: {singleInspec?.getInspection.inspectionForm.name}</h6>
+      <h5>Vehicle Name: {singleInspec?.getInspection?.vehicle?.details?.name}</h5>
+      <h6>Form Name: {singleInspec?.getInspection?.inspectionForm?.name}</h6>
       <div className=' justify-content-between pt-2'>
         {singleInspec?.getInspection.inspectionForm.tasks.map((task, i) => (
           <>
