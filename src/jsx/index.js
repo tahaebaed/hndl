@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 /// React router dom
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 /// Css
 import './index.css';
