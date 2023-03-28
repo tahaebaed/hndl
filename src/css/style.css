@@ -42215,7 +42215,8 @@ span#counter {
 /* ('Resolved' || 'Open' || 'Overdue') */
 .Resolved_issue,
 .Open_issue,
-.Overdue_issue {
+.Overdue_issue,
+.Submitted_issue {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -42225,6 +42226,9 @@ span#counter {
   background: #fc8300;
 }
 .Resolved_issue {
+  background: #2bc155;
+}
+.Submitted_issue {
   background: #2bc155;
 }
 .Overdue_issue {

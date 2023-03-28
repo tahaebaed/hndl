@@ -29,6 +29,7 @@ const StartTasks = ({ selectInspection, setStartAction, selectInspectionId, setO
           type: null,
         },
       },
+      status: 'Submitted',
     },
   });
 
@@ -57,14 +58,16 @@ const StartTasks = ({ selectInspection, setStartAction, selectInspectionId, setO
     };
   };
   const [createInspection, { data: createdInspection }] = useMutation(UPDATE_TASKS_INSPECTIONS, {
-    refetchQueries: [{
-      query: GET_INSPECTION_LIST,
-      variables: {
-        options: {
-          showAll: true,
+    refetchQueries: [
+      {
+        query: GET_INSPECTION_LIST,
+        variables: {
+          options: {
+            showAll: true,
+          },
         },
       },
-    }],
+    ],
   });
 
   const handleSubmitTasks = (values) => {
@@ -72,14 +75,20 @@ const StartTasks = ({ selectInspection, setStartAction, selectInspectionId, setO
       autoClose: false,
     });
     createInspection({
-      variables: { ...values },
+      variables: {
+        ...values,
+        inspection: {
+          ...values.inspection,
+          status: 'Submitted',
+        },
+      },
       onCompleted: (data) => {
         toast.update(toastId.current, {
           render: `A new open inspection has been Added`,
           type: toast.TYPE.SUCCESS,
           autoClose: 3000,
         });
-        setOpenModal(false)
+        setOpenModal(false);
         reset();
       },
       onError: (errors) => {

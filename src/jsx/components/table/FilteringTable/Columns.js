@@ -134,7 +134,7 @@ export const INSPECTION_COLUMNS = [
           {value}
 
           <div
-            className={`ml-2 ${value === 'Resolved' || value === 'Open' || value === 'Overdue'
+            className={`ml-2 ${value === 'Resolved' || value === 'Open' || value === 'Overdue' || value === 'Submitted'
                 ? `${value}_issue`
                 : ''
               }`}

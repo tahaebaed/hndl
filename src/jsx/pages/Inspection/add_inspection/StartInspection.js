@@ -134,7 +134,7 @@ const StartInspection = ({ vehiclesList, inspectionForm, inspectionLocalList, se
                       Select Item
                     </option>
                     {inspectionLocalList &&
-                      inspectionLocalList.map((inspection, i) => (
+                      inspectionLocalList.filter(e=> e.status !== 'Submitted').map((inspection, i) => (
                         <option id={i} value={inspection._id} key={i}>
                           {inspection?.vehicle?.details?.name}
                         </option>
