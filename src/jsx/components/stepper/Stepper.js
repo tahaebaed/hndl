@@ -1,20 +1,25 @@
-import React, { useRef, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import StepFour from './StepFour'
-import StepOne from './StepOne'
-import StepThree from './StepThree'
-import StepTwo from './StepTwo'
-import Stepper from '@mui/material/Stepper'
-import Step from '@mui/material/Step'
-import { StepButton } from '@mui/material'
-import { useMutation, useQuery } from '@apollo/client'
-import { CREATE_VEHICLE } from '../../../utilities/Apollo/Mutate'
-import { GET_GROUPS, GET_SERVICE_PROGRAMS } from '../../../utilities/Apollo/Querries'
-import { toast } from 'react-toastify'
+import React, { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import StepFour from './StepFour';
+import StepOne from './StepOne';
+import StepThree from './StepThree';
+import StepTwo from './StepTwo';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import { StepButton } from '@mui/material';
+import { useMutation, useQuery } from '@apollo/client';
+import { CREATE_VEHICLE } from '../../../utilities/Apollo/Mutate';
+import { GET_GROUPS, GET_SERVICE_PROGRAMS } from '../../../utilities/Apollo/Querries';
+import { toast } from 'react-toastify';
 
-const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehiclesList: setLocalVehiclesList }) => {
-  const [activeStep, setActiveStep] = useState(0)
-  const toastId = useRef(null)
+const StepperWrapper = ({
+  vehicleList,
+  setOpenModal,
+  refetchQuery,
+  setlocalVehiclesList: setLocalVehiclesList,
+}) => {
+  const [activeStep, setActiveStep] = useState(0);
+  const toastId = useRef(null);
   const { register, handleSubmit, watch, setValue, control } = useForm({
     defaultValues: {
       //vehicle.specifications.dimensions.width
@@ -110,8 +115,8 @@ const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehic
         },
       },
     },
-  })
-  const [filterGroup, setFilterGroup] = useState('')
+  });
+  const [filterGroup, setFilterGroup] = useState('');
 
   const [createVehicle, { data, loading, error }] = useMutation(CREATE_VEHICLE, {
     refetchQueries: [{ query: refetchQuery }],
@@ -122,26 +127,24 @@ const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehic
     },
   });
 
-  const {
-    data: groupData,
-  } = useQuery(GET_GROUPS, {
+  const { data: groupData } = useQuery(GET_GROUPS, {
     variables: {
       options: { showAll: true },
     },
-  })
+  });
 
   const { data: serviceProgData } = useQuery(GET_SERVICE_PROGRAMS, {
     variables: {
       options: { showAll: true },
     },
   });
-  const onHandleSubmit = values => {
+  const onHandleSubmit = (values) => {
     toastId.current = toast('Creating...', {
       autoClose: false,
-    })
+    });
     let group = groupData.getGroups.data.find(
-      (ele, i) => ele.name === values.vehicle.details.group
-    )
+      (ele, i) => ele.name === values.vehicle.details.group,
+    );
 
     createVehicle({
       variables: {
@@ -151,32 +154,39 @@ const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehic
             ...values.vehicle.details,
             group: group._id || values.vehicle.details.group,
           },
+          specifications: {
+            ...values.vehicle.specifications,
+            oils: {
+              ...values.vehicle.specifications.oil,
+              fuelType: values.vehicle.specifications.oil.fuelType || undefined,
+            },
+          },
           gps: {
             ...values.vehicle.gps,
             device: values.vehicle.gps.device || undefined,
-          }
+          },
         },
       },
       onCompleted: (data) => {
-        sessionStorage.removeItem('imgVehicle')
+        sessionStorage.removeItem('imgVehicle');
         toast.update(toastId.current, {
           render: `Adding ${values.vehicle.details.name} to the list`,
           type: toast.TYPE.SUCCESS,
           autoClose: 3000,
-        })
-        setLocalVehiclesList(prev => [...prev, data.createVehicle])
-        setOpenModal(false)
+        });
+        setLocalVehiclesList((prev) => [...prev, data.createVehicle]);
+        setOpenModal(false);
       },
-      onError: error => {
+      onError: (error) => {
         toast.update(toastId.current, {
           render: `Something went wrong, ${error}`,
           type: toast.TYPE.WARNING,
           autoClose: 3000,
-        })
+        });
       },
       refetchQueries: [{ query: refetchQuery }],
-    })
-  }
+    });
+  };
 
   return (
     <div>
@@ -233,18 +243,14 @@ const StepperWrapper = ({ vehicleList, setOpenModal, refetchQuery, setlocalVehic
           />
         )}
         {activeStep === 2 && (
-          <StepThree
-            {...{ activeStep, setActiveStep, register, required: true }}
-          />
+          <StepThree {...{ activeStep, setActiveStep, register, required: true }} />
         )}
         {activeStep === 3 && (
-          <StepFour
-            {...{ activeStep, setActiveStep, register, required: true }}
-          />
+          <StepFour {...{ activeStep, setActiveStep, register, required: true }} />
         )}
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default StepperWrapper
+export default StepperWrapper;
