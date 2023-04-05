@@ -61,7 +61,7 @@ const StepperWrapper = ({
             fuelPrimaryTankCapacity: 0,
             fuelConsumptionSuspiciousRange: 0,
             fuelQuality: '',
-            fuelType: '',
+            fuelType: null,
             fuelSecondaryTankCapacity: 0,
             oilCapacity: 0,
             oilType: '',
@@ -157,8 +157,8 @@ const StepperWrapper = ({
           specifications: {
             ...values.vehicle.specifications,
             oils: {
-              ...values.vehicle.specifications.oil,
-              fuelType: values.vehicle.specifications.oil.fuelType || undefined,
+              ...values.vehicle.specifications.oils,
+              fuelType: values.vehicle.specifications.oils.fuelType || undefined,
             },
           },
           gps: {
