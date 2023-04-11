@@ -95,7 +95,6 @@ const ServiceList = () => {
 
   const { data: warehouse } = useQuery(GET_WAREHOUSE, {
     variables: {
-      options: { showAll: true },
     },
   });
 
@@ -663,13 +662,13 @@ const ServiceList = () => {
           sheetName='service list'
         />
 
-        <Service
+        {ID && <Service
           id={ID}
           modal={modal}
           serviceList={localServiceList}
           setServiceList={setLocalServiceList}
           setModal={setModal}
-        />
+        />}
       </div>
     </>
   );

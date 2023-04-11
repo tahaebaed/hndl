@@ -407,15 +407,6 @@ export const COLUMNS_SERVICE_LIST = [
     },
     Filter: ColumnFilter,
   },
-  {
-    Header: 'Edit',
-    Footer: 'Edit',
-    accessor: '_id',
-    Cell: ({ value }) => {
-      return <Service id={value} />;
-    },
-    Filter: ColumnFilter,
-  },
 ];
 
 export const COLUMNS_SERVICE_HISTORY = [
@@ -441,6 +432,20 @@ export const COLUMNS_SERVICE_HISTORY = [
     Header: 'Repair Priority',
     Footer: 'Repair Priority',
     accessor: 'repairPriorityClass',
+    Cell: ({ value }) => {
+      return (
+        <div className='align-items-center d-flex'>
+          {value.replace('_', ' ')}
+
+          <div
+            className={`ml-2 ${value === 'Scheduled' ? `Resolved_issue` : ''} ${value === 'Non_Scheduled' ? 'Open_issue' : ''
+              }
+              ${value === 'Emergency' ? 'Overdue_issue' : ''}
+            `}
+          />
+        </div>
+      );
+    },
     Filter: ColumnFilter,
   },
   {
@@ -454,6 +459,8 @@ export const COLUMNS_SERVICE_HISTORY = [
           <div
             className={`ml-2 ${value === 'Resolved' || value === 'Open' || value === 'Overdue'
                 ? `${value}_issue`
+                : value === 'Completed'
+                ? 'Resolved_issue'
                 : ''
               }`}
           />

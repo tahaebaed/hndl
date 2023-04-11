@@ -204,7 +204,7 @@ const Service = ({ id, modal, setModal, serviceList, setServiceList }) => {
                 },
               })}
             >
-              {employeesList?.getEmployees.data.map((option, index) => (
+              {employeesList?.getEmployees?.data?.map((option, index) => (
                 <option key={index} value={option._id}>
                   {option.firstName} {option.lastName}
                 </option>
@@ -294,7 +294,7 @@ const Service = ({ id, modal, setModal, serviceList, setServiceList }) => {
                               <option value='' disabled>
                                 select item
                               </option>
-                              {warehouse.getWarehouses.data.map((item) => (
+                              {warehouse?.getWarehouses?.data?.map((item) => (
                                 <option key={item._id} value={item._id}>
                                   {item.name}
                                 </option>
