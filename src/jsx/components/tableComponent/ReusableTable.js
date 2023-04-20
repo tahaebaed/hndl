@@ -123,7 +123,7 @@ const ReusableTable = ({ data: list, columns, fileName, sheetName, tableRef, set
               <div className='filter-pagination  mt-3'>
                 <button
                   type='button'
-                  className=' previous-button'
+                  className='previous-button'
                   onClick={() => gotoPage(0)}
                   disabled={!canPreviousPage}
                 >
@@ -148,8 +148,8 @@ const ReusableTable = ({ data: list, columns, fileName, sheetName, tableRef, set
                 </button>
                 <button
                   type='button'
-                  className=' next-button'
-                  onClick={() => gotoPage(pageCount - 1)}
+                  className='next-button'
+                  onClick={(e) => gotoPage(pageCount - 1)}
                   disabled={!canNextPage}
                 >
                   {'>>'}

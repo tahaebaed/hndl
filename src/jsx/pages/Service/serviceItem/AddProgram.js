@@ -111,7 +111,6 @@ const AddProgram = ({
             <span>Specific Vehicle</span>
             <select
               className='form-control'
-              type='text'
               disabled={checked !== 'Custom_Vehicles'}
               {...programRegister(`serviceProgram.relatedTo`)}
               defaultValue=''
@@ -119,9 +118,9 @@ const AddProgram = ({
               <option value='' disabled>
                 please select
               </option>
-              {vehiclesList?.getVehicles.data.map((vehicle) => (
-                <option key={vehicle._id} value={vehicle._id}>
-                  {vehicle.details.name}
+              {vehicleType.map((type) => (
+                <option key={type} value={type}>
+                  {type}
                 </option>
               ))}
             </select>
@@ -142,9 +141,9 @@ const AddProgram = ({
               className='form-control'
               disabled={checked !== 'Type'}
               {...programRegister(`serviceProgram.relatedVehiclesTypes`)}
-              defaultValue='none'
+              defaultValue=''
             >
-              <option value='none' disabled>
+              <option value='' disabled>
                 please select
               </option>
               {vehicleType.map((type) => (
@@ -155,8 +154,23 @@ const AddProgram = ({
             </select>
           </label>
           <label className='col-3'>
-            <span>Group*</span>
-            <select className='form-control' {...programRegister(`serviceProgram.relatedGroups`)}>
+            <input
+              type='radio'
+              name='test'
+              value='Group'
+              onChange={(e) => {
+                setChecked(e.target.value);
+                setValue('serviceProgram.relatedTo', null);
+                setValue('serviceProgram.relatedGroups', null);
+              }}
+            />
+            <span>Group</span>
+            <select
+              className='form-control'
+              disabled={checked !== 'Group'}
+              defaultValue=''
+              {...programRegister(`serviceProgram.relatedGroups`)}
+            >
               <option value={''}>Select Group</option>
               {groupList?.getGroups.data.map((group) => (
                 <option key={group._id} value={group._id}>
@@ -175,7 +189,6 @@ const AddProgram = ({
             type='button'
             onClick={() => {
               setAddNewTask((prev) => !prev);
-              console.log('clicked');
             }}
           >
             add task

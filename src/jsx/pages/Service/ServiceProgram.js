@@ -309,11 +309,11 @@ const ServiceProgram = () => {
                               setEditValue('serviceProgram.name', data.getServiceProgram.name);
                               setEditValue(
                                 'serviceProgram.relatedTo',
-                                data.getServiceProgram.relatedTo,
+                                data.getServiceProgram.relatedTo || ''
                               );
                               setEditValue(
                                 'serviceProgram.relatedGroups',
-                                data.getServiceProgram.relatedGroups[0]._id,
+                                data.getServiceProgram.relatedGroups[0]._id || '',
                               );
                               setEditValue('serviceProgram.tasks', tasks);
                             },

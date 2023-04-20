@@ -75,7 +75,7 @@ const AddTask = ({ addNewTask, handleSubmit, taskRegister, error }) => {
                 title: 'Distance Due Soon Threshold',
                 span: 'km',
                 type: 'number',
-                register: taskRegister('distanceInterval', {
+                register: taskRegister('distanceDueSoonThreshold', {
                   valueAsNumber: true,
                 }),
               },

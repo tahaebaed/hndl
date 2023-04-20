@@ -1,11 +1,4 @@
-import { useLazyQuery, useQuery } from '@apollo/client';
-import { type } from '@testing-library/user-event/dist/type';
-import { format } from 'date-fns';
-import { GET_SERVICE } from '../../../../utilities/Apollo/Querries';
-import Service from '../../../pages/Service/serviceItem/Service';
-import AddButtons from '../../buttons/AddButtons';
 import { ColumnFilter } from './ColumnFilter';
-import ReportInspectionIssue from '../../../pages/Inspection/add_inspection/ReportInspectionIssue';
 import IssueToService from '../../../pages/Issues/IssueToService';
 export const COLUMNS = [
   {
@@ -49,7 +42,7 @@ export const COLUMNS = [
     Footer: 'License Renewal Date',
     accessor: 'details.licenseRenewalDate',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -92,7 +85,7 @@ export const COLUMNS_ASSIGNMENTS = [
     Footer: 'Start Date',
     accessor: 'startTimestamp',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -103,7 +96,7 @@ export const COLUMNS_ASSIGNMENTS = [
     Footer: 'End Date',
     accessor: 'expireAt',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -154,7 +147,7 @@ export const INSPECTION_COLUMNS = [
     Footer: 'Start Date',
     accessor: 'startTimestamp',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -165,7 +158,7 @@ export const INSPECTION_COLUMNS = [
     Footer: 'End Date',
     accessor: 'endTimestamp',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -217,7 +210,7 @@ export const ISSUES_COLUMNS = [
     Footer: 'Reported at',
     accessor: 'reportedAt',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -390,7 +383,7 @@ export const COLUMNS_SERVICE_LIST = [
     Footer: 'Start Date',
     accessor: 'startTimestamp',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -401,7 +394,7 @@ export const COLUMNS_SERVICE_LIST = [
     Footer: 'End Date',
     accessor: 'endTimestamp',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -474,7 +467,7 @@ export const COLUMNS_SERVICE_HISTORY = [
     Footer: 'Start Date',
     accessor: 'startTimestamp',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -485,7 +478,7 @@ export const COLUMNS_SERVICE_HISTORY = [
     Footer: 'End Date',
     accessor: 'endTimestamp',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -549,7 +542,7 @@ export const EMPLOYEES_COLUMNS = [
     Footer: 'License Renewal Date',
     accessor: 'licenseRenewalDate',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -560,7 +553,7 @@ export const EMPLOYEES_COLUMNS = [
     Footer: 'End Date',
     accessor: 'endTimestamp',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },
@@ -697,7 +690,7 @@ export const FUEL_HISTORY_COLUMNS = [
     Footer: 'Receipt Date',
     accessor: 'receiptDate',
     Cell: ({ value }) => {
-      return value !== 'null'
+      return value !== null
         ? new Date(value).toLocaleString('en-GB').split(',')[0]
         : '--/--/----';
     },

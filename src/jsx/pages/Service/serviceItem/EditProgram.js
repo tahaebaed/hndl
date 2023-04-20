@@ -21,7 +21,7 @@ const EditProgram = ({
   return (
     <form onSubmit={handleProgramSubmit}>
       <div>
-        <h4>Genral Information</h4>
+        <h4>General Information</h4>
         <div className='row'>
           <label className='col-6'>
             <h5>Name*</h5>
@@ -106,13 +106,16 @@ const EditProgram = ({
             <span>Specific Vehicle</span>
             <select
               className='form-control'
-              type='text'
               disabled={checked !== 'Custom_Vehicles'}
               {...programRegister(`serviceProgram.relatedTo`)}
+              defaultValue=''
             >
-              {vehiclesList?.getVehicles.data.map((vehicle) => (
-                <option key={vehicle._id} value={vehicle._id}>
-                  {vehicle.details.name}
+              <option value='' disabled>
+                please select
+              </option>
+              {vehicleType.map((type) => (
+                <option key={type} value={type}>
+                  {type}
                 </option>
               ))}
             </select>
@@ -133,7 +136,11 @@ const EditProgram = ({
               className='form-control'
               disabled={checked !== 'Type'}
               {...programRegister(`serviceProgram.relatedVehiclesTypes`)}
+              defaultValue=''
             >
+              <option value='' disabled>
+                please select
+              </option>
               {vehicleType.map((type) => (
                 <option key={type} value={type}>
                   {type}
@@ -142,13 +149,24 @@ const EditProgram = ({
             </select>
           </label>
           <label className='col-3'>
-            <span>Group*</span>
+            <input
+              type='radio'
+              name='test'
+              value='Group'
+              onChange={(e) => {
+                setChecked(e.target.value);
+                setValue('serviceProgram.relatedTo', null);
+                setValue('serviceProgram.relatedGroups', null);
+              }}
+            />
+            <span>Group</span>
             <select
               className='form-control'
-              {...programRegister(`serviceProgram.relatedGroups`, {
-                required: true,
-              })}
+              disabled={checked !== 'Group'}
+              defaultValue=''
+              {...programRegister(`serviceProgram.relatedGroups`)}
             >
+              <option value={''}>Select Group</option>
               {groupList?.getGroups.data.map((group) => (
                 <option key={group._id} value={group._id}>
                   {group.name}
